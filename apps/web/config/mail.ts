@@ -11,18 +11,18 @@ const mailConfig = defineConfig({
    */
   mailers: {
     smtp: transports.smtp({
-      host: env.get('SMTP_HOST'),
-      port: env.get('SMTP_PORT'),
-      secure: env.get('SMTP_SECURE'),
+      host: env.get('SMTP_HOST') || 'localhost',
+      port: env.get('SMTP_PORT') || 587,
+      secure: env.get('SMTP_SECURE') ?? false,
 
       auth: {
         type: 'login',
-        user: env.get('SMTP_USERNAME'),
-        pass: env.get('SMTP_PASSWORD'),
+        user: env.get('SMTP_USERNAME') || '',
+        pass: env.get('SMTP_PASSWORD') || '',
       },
 
       tls: {
-        rejectUnauthorized: env.get('SMTP_SECURE'),
+        rejectUnauthorized: env.get('SMTP_SECURE') ?? false,
       },
 
       ignoreTLS: false,
@@ -34,7 +34,7 @@ const mailConfig = defineConfig({
     }),
 
     resend: transports.resend({
-      key: env.get('RESEND_API_KEY'),
+      key: env.get('RESEND_API_KEY') || '',
       baseUrl: 'https://api.resend.com',
     }),
   },
