@@ -3,7 +3,7 @@ builder = "nixpacks"
 buildCommand = "corepack enable && pnpm install --frozen-lockfile && pnpm --filter web build"
 
 [deploy]
-startCommand = "cd apps/web/build && node ace migration:run --force && node ace db:seed --force && node bin/server.js"
+startCommand = "cd apps/web/build && node ace migration:run --force && node ace db:seed && node bin/server.js"
 healthcheckPath = "/health"
 healthcheckTimeout = 600
 restartPolicyType = "ON_FAILURE"
