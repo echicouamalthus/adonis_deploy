@@ -12,7 +12,11 @@ Ce document décrit toutes les étapes réalisées pour déployer ce projet Adon
 4. [Configuration Railway](#configuration-railway)
 5. [Variables d'environnement](#variables-denvironnement)
 6. [Commandes de déploiement](#commandes-de-déploiement)
-7. [Dépannage](#dépannage)
+7. [Erreurs rencontrées et solutions](#erreurs-rencontrées-et-solutions)
+8. [Exécuter des migrations manuellement](#exécuter-des-migrations-manuellement-sur-railway)
+9. [Variables PostgreSQL Railway](#variables-postgresql-railway)
+10. [Health Checks AdonisJS (Méthode officielle)](#health-checks-adonisjs-méthode-officielle-alternative)
+11. [Résumé des fichiers modifiés](#résumé-des-fichiers-modifiés)
 
 ---
 
@@ -489,6 +493,265 @@ startCommand = "cd apps/web/build && node ace migration:run --force && node ace 
 **Cause :** Les migrations ou le démarrage prennent plus de temps que le timeout configuré.
 
 **Solution :** Augmenter `healthcheckTimeout` dans `railway.toml` (max recommandé : 600 secondes).
+
+---
+
+## Exécuter des migrations manuellement sur Railway
+
+### Option 1 : Railway CLI (Recommandé)
+
+```bash
+# Installer Railway CLI
+npm install -g @railway/cli
+
+# Se connecter
+railway login
+
+# Lier votre projet
+railway link
+
+# Exécuter une migration
+railway run -s web "cd apps/web/build && node ace migration:run"
+
+# Voir le status des migrations
+railway run -s web "cd apps/web/build && node ace migration:status"
+
+# Rollback
+railway run -s web "cd apps/web/build && node ace migration:rollback"
+
+# Seed la base de données
+railway run -s web "cd apps/web/build && node ace db:seed"
+```
+
+### Option 2 : Railway Shell (Interface Web)
+
+1. Aller sur [railway.app](https://railway.app)
+2. Ouvrir votre projet
+3. Cliquer sur votre service web
+4. Aller dans **"Settings"** → **"Shell"** ou utiliser le bouton **"Connect"**
+5. Exécuter :
+
+```bash
+cd apps/web/build && node ace migration:run
+```
+
+### Option 3 : Redéployer
+
+Les migrations s'exécutent automatiquement à chaque déploiement :
+
+```bash
+git commit --allow-empty -m "Trigger deployment for migrations"
+git push
+```
+
+### Commandes utiles
+
+| Commande | Description |
+|----------|-------------|
+| `node ace migration:run` | Exécuter les migrations en attente |
+| `node ace migration:rollback` | Annuler la dernière migration |
+| `node ace migration:status` | Voir l'état des migrations |
+| `node ace migration:fresh` | Reset complet (⚠️ supprime toutes les données) |
+| `node ace db:seed` | Exécuter les seeders |
+
+---
+
+## Variables PostgreSQL Railway
+
+Quand vous ajoutez PostgreSQL sur Railway, ces variables sont automatiquement créées :
+
+| Variable Railway | Description |
+|------------------|-------------|
+| `PGHOST` | Hôte de la base de données |
+| `PGPORT` | Port (généralement 5432) |
+| `PGUSER` | Utilisateur |
+| `PGPASSWORD` | Mot de passe |
+| `PGDATABASE` | Nom de la base de données |
+| `DATABASE_URL` | URL de connexion complète |
+
+### 3 façons d'utiliser ces variables
+
+#### Méthode 1 : Références Railway (config actuelle)
+
+Créer des variables qui pointent vers PostgreSQL dans l'interface Railway :
+
+```env
+DB_HOST=${{Postgres.PGHOST}}
+DB_PORT=${{Postgres.PGPORT}}
+DB_USER=${{Postgres.PGUSER}}
+DB_PASSWORD=${{Postgres.PGPASSWORD}}
+DB_DATABASE=${{Postgres.PGDATABASE}}
+```
+
+**Avantage** : Compatible avec la config locale existante.
+
+#### Méthode 2 : Utiliser directement PGHOST, PGPORT, etc.
+
+Modifier `config/database.ts` pour utiliser les variables Railway :
+
+```typescript
+connection: {
+  host: env.get('PGHOST') || env.get('DB_HOST'),
+  port: env.get('PGPORT') || env.get('DB_PORT'),
+  user: env.get('PGUSER') || env.get('DB_USER'),
+  password: env.get('PGPASSWORD') || env.get('DB_PASSWORD'),
+  database: env.get('PGDATABASE') || env.get('DB_DATABASE'),
+}
+```
+
+**Avantage** : Aucune configuration manuelle sur Railway.
+
+#### Méthode 3 : Utiliser DATABASE_URL
+
+```typescript
+// config/database.ts
+postgres: {
+  client: 'pg',
+  connection: env.get('DATABASE_URL') || {
+    host: env.get('DB_HOST'),
+    port: env.get('DB_PORT'),
+    user: env.get('DB_USER'),
+    password: env.get('DB_PASSWORD'),
+    database: env.get('DB_DATABASE'),
+  },
+}
+```
+
+**Avantage** : Une seule variable à gérer.
+
+---
+
+## Health Checks AdonisJS (Méthode officielle alternative)
+
+AdonisJS propose un système de health checks intégré plus complet que notre implémentation custom. Voir la [documentation officielle](https://docs.adonisjs.com/guides/digging-deeper/health-checks).
+
+### Comparaison des méthodes
+
+| Critère | Notre implémentation | Méthode officielle AdonisJS |
+|---------|---------------------|----------------------------|
+| Package | Aucun (custom) | `@adonisjs/core/health` |
+| Vérifications | Base de données uniquement | DB + Mémoire + Disque + Redis |
+| Cache | Non | Oui (configurable) |
+| Seuils d'alerte | Non | Oui (warning/error) |
+| Complexité | Simple | Plus complète |
+
+### Checks disponibles
+
+#### Intégrés (@adonisjs/core)
+
+| Check | Description | Seuils par défaut |
+|-------|-------------|-------------------|
+| `DiskSpaceCheck` | Utilisation disque | 75% warning, 80% error |
+| `MemoryHeapCheck` | Mémoire heap | 250MB warning, 300MB error |
+| `MemoryRSSCheck` | Mémoire RSS | 320MB warning, 350MB error |
+
+#### Externes
+
+| Check | Package | Description |
+|-------|---------|-------------|
+| `DbCheck` | `@adonisjs/lucid` | Connexion SQL |
+| `DbConnectionCountCheck` | `@adonisjs/lucid` | Nombre de connexions (PostgreSQL/MySQL) |
+| `RedisCheck` | `@adonisjs/redis` | Connexion Redis |
+| `RedisMemoryUsageCheck` | `@adonisjs/redis` | Mémoire Redis |
+
+### Comment implémenter (optionnel)
+
+#### 1. Configurer le package
+
+```bash
+cd apps/web && node ace configure health_checks
+```
+
+#### 2. Fichier créé `start/health.ts`
+
+```typescript
+import { HealthChecks, DiskSpaceCheck, MemoryHeapCheck } from '@adonisjs/core/health'
+import db from '@adonisjs/lucid/services/db'
+import { DbCheck } from '@adonisjs/lucid/database'
+
+export const healthChecks = new HealthChecks().register([
+  new DiskSpaceCheck().cacheFor('1 hour'),
+  new MemoryHeapCheck(),
+  new DbCheck(db.connection()),
+])
+```
+
+#### 3. Remplacer le controller
+
+```typescript
+// apps/web/app/core/controllers/health_controller.ts
+import type { HttpContext } from '@adonisjs/core/http'
+import { healthChecks } from '#start/health'
+
+export default class HealthController {
+  async handle({ response }: HttpContext) {
+    const report = await healthChecks.run()
+
+    if (report.isHealthy) {
+      return response.ok(report)
+    }
+    return response.serviceUnavailable(report)
+  }
+}
+```
+
+#### 4. Réponse JSON enrichie
+
+```json
+{
+  "isHealthy": true,
+  "status": "ok",
+  "finishedAt": "2026-01-04T12:00:00.000Z",
+  "checks": [
+    {
+      "name": "DiskSpaceCheck",
+      "status": "ok",
+      "message": "Disk usage is 45%"
+    },
+    {
+      "name": "MemoryHeapCheck",
+      "status": "ok",
+      "message": "Heap usage is 120MB"
+    },
+    {
+      "name": "DbCheck",
+      "status": "ok",
+      "message": "Connection is healthy"
+    }
+  ]
+}
+```
+
+### Créer un Health Check personnalisé
+
+```typescript
+import { Result, BaseCheck } from '@adonisjs/core/health'
+
+export class CustomServiceCheck extends BaseCheck {
+  async run() {
+    try {
+      // Vérifier votre service
+      const isHealthy = await this.checkService()
+
+      if (isHealthy) {
+        return Result.ok('Service is running')
+      }
+      return Result.failed('Service is down')
+    } catch (error) {
+      return Result.failed('Service check failed', error)
+    }
+  }
+}
+```
+
+### Mise en cache des vérifications
+
+Pour les vérifications coûteuses, utilisez `.cacheFor()` :
+
+```typescript
+new DiskSpaceCheck().cacheFor('1 hour')
+new DbCheck(db.connection()).cacheFor('30 seconds')
+```
 
 ---
 
