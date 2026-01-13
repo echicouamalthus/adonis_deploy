@@ -59,10 +59,17 @@ const corsConfig = defineConfig({
       'http://10.0.2.2:8081',     // Android Emulator
     ]
 
-    // En production, ajouter vos domaines
-    if (process.env.NODE_ENV === 'production') {
-      allowedOrigins.push('https://votre-app.com')
-      allowedOrigins.push('https://api.votre-app.com')
+    // En production, ajouter les domaines autorisés via variable d'environnement
+    // Exemple: VITE_APP_URL=https://app.example.com,https://mobile.example.com
+    if (process.env.NODE_ENV === 'production' && process.env.VITE_APP_URL) {
+      const productionOrigins = process.env.VITE_APP_URL.split(',').map((o) => o.trim())
+      allowedOrigins.push(...productionOrigins)
+    }
+
+    // Pour mobile en production, autoriser toutes les requêtes sans origin (apps natives)
+    // Les apps mobiles natives (iOS/Android) n'envoient pas de header Origin
+    if (!requestOrigin) {
+      return true
     }
 
     return allowedOrigins.includes(requestOrigin)
@@ -96,6 +103,12 @@ const corsConfig = defineConfig({
 
 export default corsConfig
 ```
+
+### Points importants de la configuration actuelle
+
+1. **Support des apps mobiles natives** : Les applications iOS et Android natives n'envoient pas de header `Origin`. La condition `if (!requestOrigin) return true` permet d'autoriser ces requêtes.
+
+2. **Variable d'environnement `VITE_APP_URL`** : En production, les domaines autorisés sont configurés via cette variable, ce qui évite de hardcoder les URLs.
 
 ---
 
@@ -210,25 +223,41 @@ curl -X OPTIONS http://localhost:3333/api/hello \
 
 ## Configuration avec variables d'environnement
 
-### `apps/web/.env`
+### `apps/web/.env` (production)
 
 ```bash
-# Origines CORS autorisées (séparées par des virgules)
-CORS_ORIGINS=http://localhost:8081,http://localhost:3000
+# URL de l'application (utilisée aussi pour CORS)
+# Plusieurs domaines séparés par des virgules
+VITE_APP_URL=https://votre-app.com,https://www.votre-app.com
 ```
 
-### `apps/web/config/cors.ts`
+### Variable sur Railway
+
+Dans Railway, configurer la variable d'environnement :
+
+| Variable | Valeur exemple |
+|----------|----------------|
+| `VITE_APP_URL` | `https://votre-app.railway.app` |
+| `NODE_ENV` | `production` |
+
+### Comportement
 
 ```typescript
-origin: (requestOrigin) => {
-  const envOrigins = process.env.CORS_ORIGINS?.split(',') || []
+// En production avec VITE_APP_URL définie
+if (process.env.NODE_ENV === 'production' && process.env.VITE_APP_URL) {
+  const productionOrigins = process.env.VITE_APP_URL.split(',').map((o) => o.trim())
+  allowedOrigins.push(...productionOrigins)
+}
 
-  const allowedOrigins = [
-    ...envOrigins,
-    'http://localhost:8081',
-    'http://10.0.2.2:8081',
-  ]
-
-  return allowedOrigins.includes(requestOrigin)
+// Apps mobiles natives (pas de header Origin)
+if (!requestOrigin) {
+  return true
 }
 ```
+
+### Pourquoi `VITE_APP_URL` ?
+
+Cette variable est déjà utilisée par Vite/AdonisJS pour d'autres configurations. La réutiliser pour CORS permet :
+- Une configuration centralisée
+- Moins de variables d'environnement à gérer
+- Cohérence avec le reste de l'application
