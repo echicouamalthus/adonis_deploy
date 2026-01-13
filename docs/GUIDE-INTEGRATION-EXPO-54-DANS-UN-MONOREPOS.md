@@ -52,11 +52,11 @@ Cette erreur survient quand **plusieurs versions de React** sont installées dan
 
 ### 2.1 Environnement requis
 
-| Outil | Version minimale |
-|-------|------------------|
-| Node.js | v20.x ou supérieur |
-| pnpm | v8.x ou supérieur |
-| Expo CLI | Dernière version (`npx create-expo-app`) |
+| Outil    | Version minimale                                    |
+| -------- | --------------------------------------------------- |
+| Node.js  | v20.x ou supérieur                                  |
+| pnpm     | v8.x ou supérieur                                   |
+| Expo CLI | Dernière version (`npx create-expo-app`)            |
 | Expo SDK | 54.x (détection automatique monorepo depuis SDK 52) |
 
 ### 2.2 Vérification
@@ -95,6 +95,7 @@ Creating an Expo project using the default template.
 **Réponds `Y` (Yes)** pour accepter la réinstallation.
 
 **Ce qui se passe :**
+
 1. Expo ajoute `node-linker=hoisted` à la configuration pnpm
 2. Le `node_modules` racine est supprimé
 3. Toutes les dépendances sont réinstallées avec la nouvelle configuration
@@ -151,15 +152,15 @@ Si les versions sont différentes, ajoute les `overrides` dans le `package.json`
 
 ```json
 {
-  "name": "adonis_deploy",
-  "private": true,
-  "pnpm": {
-    "overrides": {
-      "react": "19.1.0",
-      "react-dom": "19.1.0",
-      "@types/react": "~19.1.0"
-    }
-  }
+	"name": "adonis_deploy",
+	"private": true,
+	"pnpm": {
+		"overrides": {
+			"react": "19.1.0",
+			"react-dom": "19.1.0",
+			"@types/react": "~19.1.0"
+		}
+	}
 }
 ```
 
@@ -177,19 +178,19 @@ pnpm install
 
 ### 4.1 Erreur : "Cannot read property useId"
 
-| | |
-|---|---|
-| **Cause** | Plusieurs versions de React sont chargées |
+|              |                                                                 |
+| ------------ | --------------------------------------------------------------- |
+| **Cause**    | Plusieurs versions de React sont chargées                       |
 | **Solution** | Suivre l'Étape 4 pour forcer une version unique via `overrides` |
 
 ---
 
 ### 4.2 Erreur : node_modules créé dans apps/mobile
 
-| | |
-|---|---|
-| **Cause** | Installation sans `node-linker=hoisted` |
-| **Solution** | Voir ci-dessous |
+|              |                                         |
+| ------------ | --------------------------------------- |
+| **Cause**    | Installation sans `node-linker=hoisted` |
+| **Solution** | Voir ci-dessous                         |
 
 ```bash
 # Supprimer le node_modules local
@@ -214,9 +215,9 @@ WARN apps/web
   └── ✕ unmet peer vite@^6.0.0: found 7.3.0
 ```
 
-| | |
-|---|---|
-| **Impact** | Ce warning concerne l'app web AdonisJS, **pas Expo** |
+|            |                                                               |
+| ---------- | ------------------------------------------------------------- |
+| **Impact** | Ce warning concerne l'app web AdonisJS, **pas Expo**          |
 | **Action** | **Ignorer** pour l'instant. Si l'app web fonctionne, c'est OK |
 
 ---
@@ -227,9 +228,9 @@ WARN apps/web
 WARN 6 deprecated subdependencies found: @types/minimatch@6.0.0, glob@7.2.3...
 ```
 
-| | |
-|---|---|
-| **Impact** | Aucun impact sur le fonctionnement |
+|            |                                                            |
+| ---------- | ---------------------------------------------------------- |
+| **Impact** | Aucun impact sur le fonctionnement                         |
 | **Action** | **Ignorer**. Ce sont des dépendances transitives obsolètes |
 
 ---
@@ -260,19 +261,19 @@ pnpm --filter mobile start
 
 ### 6.1 Développement
 
-| Commande | Description |
-|----------|-------------|
-| `pnpm --filter web dev` | Lancer l'app AdonisJS |
-| `pnpm --filter mobile start` | Lancer l'app Expo |
-| `pnpm dev` | Lancer toutes les apps (si configuré dans turbo.json) |
+| Commande                     | Description                                           |
+| ---------------------------- | ----------------------------------------------------- |
+| `pnpm --filter web dev`      | Lancer l'app AdonisJS                                 |
+| `pnpm --filter mobile start` | Lancer l'app Expo                                     |
+| `pnpm dev`                   | Lancer toutes les apps (si configuré dans turbo.json) |
 
 ### 6.2 Diagnostic
 
-| Commande | Description |
-|----------|-------------|
-| `pnpm why react --recursive` | Vérifier les versions de React |
-| `pnpm ls --depth=0` | Lister les dépendances directes |
-| `cat .npmrc` | Vérifier la config pnpm |
+| Commande                     | Description                     |
+| ---------------------------- | ------------------------------- |
+| `pnpm why react --recursive` | Vérifier les versions de React  |
+| `pnpm ls --depth=0`          | Lister les dépendances directes |
+| `cat .npmrc`                 | Vérifier la config pnpm         |
 
 ### 6.3 Réinitialisation complète
 

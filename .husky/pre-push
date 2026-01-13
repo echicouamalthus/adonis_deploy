@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "🚀 Running pre-push checks..."
+
+# Exécuter le script de vérification avant push
+pnpm run prepush
