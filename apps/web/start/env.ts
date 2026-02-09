@@ -19,6 +19,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   LOG_LEVEL: Env.schema.string(),
 
   VITE_API_URL: Env.schema.string.optional(),
+  // VITE_MOBILE_SCHEME: Env.schema.string.optional(),
 
   /*
   |----------------------------------------------------------
@@ -67,9 +68,23 @@ export default await Env.create(new URL('../', import.meta.url), {
   DRIVE_DISK: Env.schema.enum(['fs'] as const),
 
   /*
+  -----------------------------------------------------------
+  Variables for configuring the Gemini integration
+  -----------------------------------------------------------
+  */
+  GEMINI_VISION_API_KEY: Env.schema.string.optional(),
+
+  /*
   |----------------------------------------------------------
   | Variables for configuring the limiter package
   |----------------------------------------------------------
   */
   LIMITER_STORE: Env.schema.enum(['database', 'memory'] as const),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring RevenueCat webhooks
+  |----------------------------------------------------------
+  */
+  REVENUECAT_WEBHOOK_SECRET: Env.schema.string.optional(),
 })

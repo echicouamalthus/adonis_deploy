@@ -83,6 +83,15 @@ export default defineConfig({
 
     //analytics
     () => import('#analytics/routes'),
+
+    //scans
+    () => import('#scans/routes'),
+
+    //credits
+    () => import('#credits/routes'),
+
+    //shares
+    () => import('#shares/routes'),
   ],
 
   /*

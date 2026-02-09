@@ -23,3 +23,15 @@ export const throttle = limiter.define('global', () => {
       })
     })
 })
+
+/**
+ * Limiter pour les scans (appel Gemini = coûteux).
+ * 5 scans par minute par utilisateur.
+ */
+export const scanThrottle = limiter.define('scan', (ctx) => {
+  return limiter
+    .allowRequests(5)
+    .every('1 minute')
+    .blockFor('1 min')
+    .usingKey(`scan_${ctx.auth?.user?.id ?? ctx.request.ip()}`)
+})

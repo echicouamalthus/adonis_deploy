@@ -5,7 +5,7 @@ Ce guide compare les deux approches de gestion de formulaires dans React Native 
 ## Comparaison des approches
 
 | Aspect | @tanstack/react-form | react-hook-form |
-|--------|---------------------|-----------------|
+| --------|---------------------|-----------------|
 | **Validation Zod** | Manuelle avec `safeParse()` | Automatique avec `zodResolver` |
 | **Syntaxe** | `form.Field` + render props | `Controller` + render props |
 | **État des erreurs** | `field.state.meta.errors` | `formState.errors` |
