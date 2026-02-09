@@ -35,3 +35,15 @@ export const scanThrottle = limiter.define('scan', (ctx) => {
     .blockFor('1 min')
     .usingKey(`scan_${ctx.auth?.user?.id ?? ctx.request.ip()}`)
 })
+
+/**
+ * Limiter pour les webhooks (protection anti-DDoS).
+ * 100 requêtes par minute par IP.
+ */
+export const webhookThrottle = limiter.define('webhook', (ctx) => {
+  return limiter
+    .allowRequests(100)
+    .every('1 minute')
+    .blockFor('5 mins')
+    .usingKey(`webhook_${ctx.request.ip()}`)
+})

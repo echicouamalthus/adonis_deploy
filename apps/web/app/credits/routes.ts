@@ -1,5 +1,6 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+import { webhookThrottle } from '#start/limiter'
 
 const CreditsController = () => import('#credits/controllers/api/credit_controller')
 const RevenuecatWebhookController = () =>
@@ -17,3 +18,4 @@ router
 router
   .post('/api/webhooks/revenuecat', [RevenuecatWebhookController, 'handle'])
   .as('webhooks.revenuecat')
+  .use(webhookThrottle)

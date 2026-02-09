@@ -2,7 +2,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 import ScanDto from '#scans/dtos/scan'
 import ScanService from '#scans/services/scan_service'
-import { InsufficientCreditsError } from '#credits/services/credit_service'
 import { createScanValidator } from '#scans/validators'
 
 export default class ScansController {
@@ -15,26 +14,17 @@ export default class ScansController {
   /**
    * POST /api/scans
    * Upload une image, analyse via AI SDK + Gemini, retourne les emojis
+   * Note: InsufficientCreditsError est géré par le handler global (HTTP 402)
    */
   async store({ request, response, auth }: HttpContext) {
     const { image } = await request.validateUsing(createScanValidator)
 
-    try {
-      const { scan, credits } = await this.scanService.createScan(auth.user!.id, image)
+    const { scan, credits } = await this.scanService.createScan(auth.user!.id, image)
 
-      return response.created({
-        ...new ScanDto(scan),
-        credits,
-      })
-    } catch (error) {
-      if (error instanceof InsufficientCreditsError) {
-        return response.paymentRequired({
-          message: error.message,
-          credits: 0,
-        })
-      }
-      throw error
-    }
+    return response.created({
+      ...new ScanDto(scan),
+      credits,
+    })
   }
 
   /**

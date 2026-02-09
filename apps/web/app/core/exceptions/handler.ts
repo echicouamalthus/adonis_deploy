@@ -2,6 +2,7 @@ import app from '@adonisjs/core/services/app'
 import { errors } from '@adonisjs/bouncer'
 import { HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
+import { InsufficientCreditsError } from '#credits/services/credit_service'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
@@ -31,6 +32,18 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    /**
+     * Gestion centralisée des crédits insuffisants
+     * Retourne HTTP 402 Payment Required avec un message clair
+     */
+    if (error instanceof InsufficientCreditsError) {
+      return ctx.response.status(402).json({
+        error: 'Crédits insuffisants',
+        code: 'INSUFFICIENT_CREDITS',
+        message: 'Vous devez acheter des crédits pour continuer à scanner',
+      })
+    }
+
     if (error instanceof errors.E_AUTHORIZATION_FAILURE) {
       if (this.debug) {
         return this.renderErrorAsHTML(error, ctx)

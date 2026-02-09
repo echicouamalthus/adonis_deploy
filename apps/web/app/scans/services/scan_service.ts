@@ -5,21 +5,24 @@ import { cuid } from '@adonisjs/core/helpers'
 import Scan from '#scans/models/scan'
 import VisionService from '#scans/services/vision_service'
 import CreditService, { InsufficientCreditsError } from '#credits/services/credit_service'
+import ImageService from '#scans/services/image_service'
 
 export default class ScanService {
   private creditService: CreditService
   private visionService: VisionService
+  private imageService: ImageService
 
   constructor() {
     this.creditService = new CreditService()
     this.visionService = new VisionService()
+    this.imageService = new ImageService()
   }
 
   /**
    * Vérifie les crédits, sauvegarde l'image, analyse via Gemini,
    * débite 1 crédit, et crée le scan en DB.
    */
-  async createScan(userId: number, image: { extname?: string; tmpPath?: string; move: Function }) {
+  async createScan(userId: number, image: { extname?: string; move: Function }) {
     // Vérifier les crédits
     const balance = await this.creditService.getBalance(userId)
     if (balance <= 0) {
@@ -32,7 +35,8 @@ export default class ScanService {
 
     // Lire le fichier pour l'envoyer à Gemini
     const filePath = app.makePath('tmp/scans', fileName)
-    const imageBuffer = await readFile(filePath)
+    const readImage = await readFile(filePath)
+    const imageBuffer = await this.imageService.compress(readImage)
 
     // Analyser via AI SDK + Gemini
     const result = await this.visionService.analyzeImage(imageBuffer)
