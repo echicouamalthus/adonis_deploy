@@ -36,13 +36,16 @@
 	},
 	"lint-staged": {
 		"apps/web/**/*.{ts,tsx}": [
-			"eslint --fix  --config apps/web/eslint.config.js"
+			"eslint --fix  --config apps/web/eslint.config.js",
+			"prettier --write"
 		],
 		"apps/mobile/**/*.{ts,tsx}": [
-			"eslint --fix  --config apps/mobile/eslint.config.js"
+			"eslint --fix  --config apps/mobile/eslint.config.js",
+			"prettier --write"
 		],
 		"packages/**/*.{ts,tsx}": [
-			"eslint --fix"
+			"eslint --fix",
+			"prettier --write"
 		]
 	}
 }
