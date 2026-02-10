@@ -1,5 +1,5 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
-import Scan from '#scans/models/scan'
+import type Scan from '#scans/models/scan'
 
 export default class ScanDto extends BaseModelDto {
   declare id: number

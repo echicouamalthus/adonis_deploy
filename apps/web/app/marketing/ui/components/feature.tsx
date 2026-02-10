@@ -1,5 +1,5 @@
+import { Globe, Palette, Zap } from 'lucide-react'
 import Container from '#marketing/ui/components/container'
-import { Palette, Globe, Zap } from 'lucide-react'
 
 export default function FeatureSection() {
   return (

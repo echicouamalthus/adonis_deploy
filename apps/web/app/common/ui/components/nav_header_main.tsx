@@ -1,7 +1,6 @@
 import { Link } from '@inertiajs/react'
-
-import { isSection, type NavMainItem } from '#common/ui/types/navigation'
 import HeaderDropdown from '#common/ui/components/header_dropdown'
+import { isSection, type NavMainItem } from '#common/ui/types/navigation'
 import { useAbility } from '#users/ui/context/abilities_context'
 
 export interface NavHeaderMainProps {

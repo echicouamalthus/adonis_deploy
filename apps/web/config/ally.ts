@@ -1,11 +1,11 @@
-import env from '#start/env'
 import { defineConfig, services } from '@adonisjs/ally'
+import env from '#start/env'
 
 const allyConfig = defineConfig({
   google: services.google({
     clientId: env.get('GOOGLE_CLIENT_ID') || '',
     clientSecret: env.get('GOOGLE_CLIENT_SECRET') || '',
-    callbackUrl: (env.get('VITE_API_URL') || '') + '/google/callback',
+    callbackUrl: `${env.get('VITE_API_URL') || ''}/google/callback`,
   }),
 })
 

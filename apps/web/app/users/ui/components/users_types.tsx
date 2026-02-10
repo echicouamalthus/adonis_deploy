@@ -1,7 +1,6 @@
-import { SimpleTFunction } from '#common/ui/hooks/use_translation'
-
+import { type LucideIcon, Shield, User } from 'lucide-react'
+import type { SimpleTFunction } from '#common/ui/hooks/use_translation'
 import Roles from '#users/enums/role'
-import { LucideIcon, Shield, User } from 'lucide-react'
 
 export type Role = {
   label: string

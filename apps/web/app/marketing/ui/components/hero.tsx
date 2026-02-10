@@ -1,7 +1,6 @@
 import { Link } from '@tuyau/inertia/react'
-import { Github } from 'lucide-react'
-
 import { Button } from '@workspace/ui/components/button'
+import { Github } from 'lucide-react'
 
 import Container from '#marketing/ui/components/container'
 import featureHero from '../images/feature_hero.png'

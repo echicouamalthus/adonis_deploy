@@ -1,7 +1,4 @@
-import { useState, type JSX } from 'react'
 import { Link, router } from '@inertiajs/react'
-
-import { cn } from '@workspace/ui/lib/utils'
 import { buttonVariants } from '@workspace/ui/components/button'
 import { ScrollArea } from '@workspace/ui/components/scroll-area'
 import {
@@ -11,8 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@workspace/ui/components/select'
+import { cn } from '@workspace/ui/lib/utils'
+import { type JSX, useState } from 'react'
 
-import { Subjects, useAbility } from '#users/ui/context/abilities_context'
+import { type Subjects, useAbility } from '#users/ui/context/abilities_context'
 
 export interface SidebarNavItem {
   href: string

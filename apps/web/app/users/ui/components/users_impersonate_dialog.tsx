@@ -1,12 +1,10 @@
 import { useForm } from '@inertiajs/react'
-
-import { Trans } from 'react-i18next'
-import { UserIcon } from 'lucide-react'
-import { toast } from '@workspace/ui/hooks/use-toast'
 import { Alert, AlertDescription, AlertTitle } from '@workspace/ui/components/alert'
-import { useTranslation } from '#common/ui/hooks/use_translation'
-
+import { toast } from '@workspace/ui/hooks/use-toast'
+import { UserIcon } from 'lucide-react'
+import { Trans } from 'react-i18next'
 import { ConfirmDialog } from '#common/ui/components/confirm_dialog'
+import { useTranslation } from '#common/ui/hooks/use_translation'
 
 import type UserDto from '#users/dtos/user'
 

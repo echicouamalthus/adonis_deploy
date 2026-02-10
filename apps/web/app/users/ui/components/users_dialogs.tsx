@@ -1,9 +1,9 @@
-import { useUsers } from '#users/ui/context/users_context'
 import { UsersActionDialog } from '#users/ui/components/users_action_dialog'
 import { UsersDeleteDialog } from '#users/ui/components/users_delete_dialog'
-import { UsersInviteDialog } from '#users/ui/components/users_invite_dialog'
 import { UsersImpersonateDialog } from '#users/ui/components/users_impersonate_dialog'
-import { Role } from '#users/ui/components/users_types'
+import { UsersInviteDialog } from '#users/ui/components/users_invite_dialog'
+import type { Role } from '#users/ui/components/users_types'
+import { useUsers } from '#users/ui/context/users_context'
 
 export function UsersDialogs({ roles }: { roles: Role[] }) {
   const { open, setOpen, currentRow, setCurrentRow } = useUsers()

@@ -1,7 +1,4 @@
 import { Link } from '@inertiajs/react'
-
-import { isSection, type NavMainItem } from '#common/ui/types/navigation'
-
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -10,6 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@workspace/ui/components/sidebar'
+import { isSection, type NavMainItem } from '#common/ui/types/navigation'
 
 import { useAbility } from '#users/ui/context/abilities_context'
 

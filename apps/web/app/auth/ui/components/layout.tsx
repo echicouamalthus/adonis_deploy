@@ -1,6 +1,5 @@
-import React from 'react'
-
 import { Toaster } from '@workspace/ui/components/sonner'
+import type React from 'react'
 
 import { AppLogo } from '#common/ui/components/app_logo'
 

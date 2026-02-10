@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-
-import User from '#users/dtos/user'
 import useDialogState from '#common/ui/hooks/use_dialog_state'
+import type User from '#users/dtos/user'
 
 type UsersDialogType = 'add' | 'edit' | 'delete' | 'invite' | 'impersonate'
 

@@ -11,7 +11,7 @@ export default class HealthController {
         timestamp: new Date().toISOString(),
         database: 'connected',
       })
-    } catch (error) {
+    } catch (_error) {
       return response.serviceUnavailable({
         status: 'unhealthy',
         timestamp: new Date().toISOString(),

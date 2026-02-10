@@ -1,15 +1,14 @@
-import React from 'react'
-
-import { NavUser } from '#common/ui/components/nav_user'
+import type React from 'react'
 import { AppLogo } from '#common/ui/components/app_logo'
+import Breadcrumb from '#common/ui/components/breadcrumbs'
 import { NavHeaderMain } from '#common/ui/components/nav_header_main'
 import { NavHeaderMobile } from '#common/ui/components/nav_header_mobile'
+import { NavUser } from '#common/ui/components/nav_user'
 import { ToggleTheme } from '#common/ui/components/toggle_theme'
-import Breadcrumb from '#common/ui/components/breadcrumbs'
 
 import type { NavMainItem, NavUserOptionsGroup } from '#common/ui/types/navigation'
 
-import UserDto from '#users/dtos/user'
+import type UserDto from '#users/dtos/user'
 
 interface BreadcrumbItemProps {
   label: string

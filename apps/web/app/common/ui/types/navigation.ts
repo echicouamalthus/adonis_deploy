@@ -1,8 +1,6 @@
-import { Subjects } from '#users/ui/context/abilities_context'
-
-import { LucideIcon } from 'lucide-react'
-
-import UserDto from '#users/dtos/user'
+import type { LucideIcon } from 'lucide-react'
+import type UserDto from '#users/dtos/user'
+import type { Subjects } from '#users/ui/context/abilities_context'
 
 interface ItemNav {
   title: string

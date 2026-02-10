@@ -1,15 +1,16 @@
 import {
-  ColumnDef,
-  ColumnFiltersState,
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  OnChangeFn,
-  PaginationState,
-  Row,
+  type OnChangeFn,
+  type PaginationState,
+  type Row,
   useReactTable,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table'
+import { DataTablePagination } from '@workspace/ui/components/data-table/data-table-pagination'
 import {
   Table,
   TableBody,
@@ -17,35 +18,34 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@workspace/ui/components/table";
-import { DataTablePagination } from "@workspace/ui/components/data-table/data-table-pagination";
-import { useState } from "react";
+} from '@workspace/ui/components/table'
+import { useState } from 'react'
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  className?: string;
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+  className?: string
   Toolbar?: React.ComponentType<{
-    table: ReturnType<typeof useReactTable<TData>>;
-  }>;
-  t: (key: string, options?: Record<string, unknown>) => string;
-  remoteTableOptions?: RemoteTableOptions;
+    table: ReturnType<typeof useReactTable<TData>>
+  }>
+  t: (key: string, options?: Record<string, unknown>) => string
+  remoteTableOptions?: RemoteTableOptions
 }
 
 export interface RemoteTableOptions {
-  pageCount: number;
+  pageCount: number
   state: {
-    pagination: { pageIndex: number; pageSize: number };
-  };
-  onPaginationChange: OnChangeFn<PaginationState>;
+    pagination: { pageIndex: number; pageSize: number }
+  }
+  onPaginationChange: OnChangeFn<PaginationState>
 }
 
 export interface ColumnMeta {
-  columnClasses: string;
+  columnClasses: string
 }
 
 export interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
+  row: Row<TData>
 }
 
 export function DataTable<TData, TValue>({
@@ -54,15 +54,15 @@ export function DataTable<TData, TValue>({
   Toolbar,
   t,
   remoteTableOptions,
-  className = "table-fixed md:table-auto",
+  className = 'table-fixed md:table-auto',
 }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [localPagination, setLocalPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
-  });
+  })
 
-  const isRemote = !!remoteTableOptions;
+  const isRemote = !!remoteTableOptions
 
   const table = useReactTable({
     data,
@@ -76,22 +76,18 @@ export function DataTable<TData, TValue>({
     pageCount: isRemote ? remoteTableOptions!.pageCount : undefined,
 
     state: {
-      pagination: isRemote
-        ? remoteTableOptions!.state.pagination
-        : localPagination,
+      pagination: isRemote ? remoteTableOptions!.state.pagination : localPagination,
       columnFilters: isRemote ? undefined : columnFilters,
     },
 
     onColumnFiltersChange: setColumnFilters,
 
-    onPaginationChange: isRemote
-      ? remoteTableOptions!.onPaginationChange
-      : setLocalPagination,
+    onPaginationChange: isRemote ? remoteTableOptions!.onPaginationChange : setLocalPagination,
 
     ...(isRemote ? {} : { getPaginationRowModel: getPaginationRowModel() }),
 
     getFilteredRowModel: getFilteredRowModel(),
-  });
+  })
 
   return (
     <div className="space-y-4">
@@ -105,19 +101,13 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className={
-                        (header.column.columnDef.meta as ColumnMeta)
-                          ?.columnClasses
-                      }
+                      className={(header.column.columnDef.meta as ColumnMeta)?.columnClasses}
                     >
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -125,33 +115,21 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={
-                        (cell.column.columnDef.meta as ColumnMeta)
-                          ?.columnClasses
-                      }
+                      className={(cell.column.columnDef.meta as ColumnMeta)?.columnClasses}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  {t("common.table.no_results")}
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  {t('common.table.no_results')}
                 </TableCell>
               </TableRow>
             )}
@@ -160,5 +138,5 @@ export function DataTable<TData, TValue>({
       </div>
       <DataTablePagination t={t} table={table} />
     </div>
-  );
+  )
 }

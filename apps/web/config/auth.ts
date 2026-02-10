@@ -1,7 +1,7 @@
 import { defineConfig } from '@adonisjs/auth'
-import { sessionGuard, sessionUserProvider } from '@adonisjs/auth/session'
-import type { InferAuthenticators, InferAuthEvents, Authenticators } from '@adonisjs/auth/types'
 import { tokensGuard, tokensUserProvider } from '@adonisjs/auth/access_tokens'
+import { sessionGuard, sessionUserProvider } from '@adonisjs/auth/session'
+import type { Authenticators, InferAuthEvents, InferAuthenticators } from '@adonisjs/auth/types'
 
 export const afterAuthRedirectRoute = 'dashboard.show'
 export const afterAuthLogoutRedirectRoute = 'marketing.show'

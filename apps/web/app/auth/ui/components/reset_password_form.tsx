@@ -1,11 +1,10 @@
-import React from 'react'
 import { useForm } from '@inertiajs/react'
-
-import { cn } from '@workspace/ui/lib/utils'
 import { Button } from '@workspace/ui/components/button'
-import { PasswordInput } from '@workspace/ui/components/password-input'
-import { FieldSet, FieldGroup, Field, FieldLabel } from '@workspace/ui/components/field'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@workspace/ui/components/field'
 import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
+import { PasswordInput } from '@workspace/ui/components/password-input'
+import { cn } from '@workspace/ui/lib/utils'
+import type React from 'react'
 
 export function ResetPasswordForm({
   token,

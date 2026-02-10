@@ -1,10 +1,7 @@
-import TokenDto from '#users/dtos/token'
-
-import { DataTable, DataTableToolbar, ColumnDef } from '@workspace/ui/components/data-table'
-
-import { DataTableRowActions } from './tokens_row_actions'
-
+import { type ColumnDef, DataTable, DataTableToolbar } from '@workspace/ui/components/data-table'
 import { useTranslation } from '#common/ui/hooks/use_translation'
+import type TokenDto from '#users/dtos/token'
+import { DataTableRowActions } from './tokens_row_actions'
 
 interface DataTableProps {
   tokens: TokenDto[]

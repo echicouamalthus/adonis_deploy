@@ -1,8 +1,7 @@
-import SettingsLayout from '#users/ui/components/settings_layout'
-import { AppearanceForm } from '#users/ui/components/appearance_form'
-
-import HeadingSmall from '#common/ui/components/heading_small'
 import AppLayout from '#common/ui/components/app_layout'
+import HeadingSmall from '#common/ui/components/heading_small'
+import { AppearanceForm } from '#users/ui/components/appearance_form'
+import SettingsLayout from '#users/ui/components/settings_layout'
 
 export default function Appearance() {
   return (

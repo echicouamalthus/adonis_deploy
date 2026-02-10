@@ -1,4 +1,3 @@
-import { cn } from '@workspace/ui/lib/utils'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -9,6 +8,7 @@ import {
   AlertDialogTitle,
 } from '@workspace/ui/components/alert-dialog'
 import { Button } from '@workspace/ui/components/button'
+import { cn } from '@workspace/ui/lib/utils'
 
 interface ConfirmDialogProps {
   open: boolean

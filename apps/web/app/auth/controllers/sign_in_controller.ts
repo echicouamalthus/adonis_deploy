@@ -1,13 +1,10 @@
-import { HttpContext } from '@adonisjs/core/http'
-import { afterAuthRedirectRoute } from '#config/auth'
+import type { HttpContext } from '@adonisjs/core/http'
+import type { Limiter } from '@adonisjs/limiter'
 import limiter from '@adonisjs/limiter/services/main'
-import { Limiter } from '@adonisjs/limiter'
-
 import { returnToKey } from '#auth/middleware/auth_middleware'
-
-import User from '#users/models/user'
-
 import { signInValidator } from '#auth/validators'
+import { afterAuthRedirectRoute } from '#config/auth'
+import User from '#users/models/user'
 
 export function isSafeInternalPath(path?: string | null): path is string {
   if (!path) return false

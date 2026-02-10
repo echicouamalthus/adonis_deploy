@@ -1,5 +1,5 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
-import Share from '#shares/models/share'
+import type Share from '#shares/models/share'
 
 export default class ShareDto extends BaseModelDto {
   declare id: number

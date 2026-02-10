@@ -1,17 +1,13 @@
-import React from 'react'
-
-import { ToggleTheme } from '#common/ui/components/toggle_theme'
-import { getCookie } from '#common/ui/utils/cookie_helper'
-import { NavUser } from '#common/ui/components/nav_user'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@workspace/ui/components/sidebar'
+import type React from 'react'
 import { AppSidebar } from '#common/ui/components/app_sidebar'
 import Breadcrumb from '#common/ui/components/breadcrumbs'
-
-import type { NavMainItem, NavUserOptionsGroup } from '#common/ui/types/navigation'
-
-import { SidebarInset, SidebarProvider, SidebarTrigger } from '@workspace/ui/components/sidebar'
-
-import UserDto from '#users/dtos/user'
+import { NavUser } from '#common/ui/components/nav_user'
+import { ToggleTheme } from '#common/ui/components/toggle_theme'
 import type { Collapsible, Variant } from '#common/ui/context/layout_provider'
+import type { NavMainItem, NavUserOptionsGroup } from '#common/ui/types/navigation'
+import { getCookie } from '#common/ui/utils/cookie_helper'
+import type UserDto from '#users/dtos/user'
 
 interface BreadcrumbItemProps {
   label: string

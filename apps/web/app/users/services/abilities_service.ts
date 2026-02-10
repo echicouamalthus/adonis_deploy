@@ -1,11 +1,8 @@
-import User from '#users/models/user'
-
-import UserPolicy from '#users/policies/user_policy'
+import type { AuthorizerResponse } from '@adonisjs/bouncer/types'
+import type { MongoQuery } from '@casl/ability'
+import type User from '#users/models/user'
 import TokenPolicy from '#users/policies/token_policy'
-
-import { AuthorizerResponse } from '@adonisjs/bouncer/types'
-
-import { type MongoQuery } from '@casl/ability'
+import UserPolicy from '#users/policies/user_policy'
 
 export type Subjects = 'user' | 'token'
 

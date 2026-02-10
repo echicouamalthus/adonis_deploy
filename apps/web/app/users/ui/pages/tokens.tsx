@@ -1,17 +1,13 @@
-import { InferPageProps } from '@adonisjs/inertia/types'
-
-import type TokensController from '#users/controllers/tokens_controller'
-
+import type { InferPageProps } from '@adonisjs/inertia/types'
 import AppLayout from '#common/ui/components/app_layout'
 import HeadingSmall from '#common/ui/components/heading_small'
-
-import SettingsLayout from '#users/ui/components/settings_layout'
-import TokensTable from '#users/ui/components/tokens_table'
-import { TokensDialogs } from '#users/ui/components/tokens_dialogs'
-import TokensProvider from '#users/ui/context/tokens_context'
-import { TokensPrimaryButtons } from '#users/ui/components/tokens_primary_buttons'
-
 import { useTranslation } from '#common/ui/hooks/use_translation'
+import type TokensController from '#users/controllers/tokens_controller'
+import SettingsLayout from '#users/ui/components/settings_layout'
+import { TokensDialogs } from '#users/ui/components/tokens_dialogs'
+import { TokensPrimaryButtons } from '#users/ui/components/tokens_primary_buttons'
+import TokensTable from '#users/ui/components/tokens_table'
+import TokensProvider from '#users/ui/context/tokens_context'
 
 export default function TokensPage({ tokens }: InferPageProps<TokensController, 'index'>) {
   const { t } = useTranslation()

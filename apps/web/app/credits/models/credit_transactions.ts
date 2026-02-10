@@ -1,6 +1,6 @@
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import { DateTime } from 'luxon'
+import type { DateTime } from 'luxon'
 import User from '#users/models/user'
 
 export type CreditType = 'scan' | 'purchase' | 'bonus_invite' | 'bonus_share' | 'bonus_signup'

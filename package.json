@@ -13,8 +13,9 @@
 	"scripts": {
 		"build": "turbo build",
 		"dev": "turbo dev",
-		"lint": "turbo lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"format": "biome format --write .",
 		"docker:prod": "docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d",
 		"prepare": "husky",
 		"precommit": "node scripts/precommit.mjs",
@@ -23,6 +24,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",
+		"@types/minimatch": "^6.0.0",
 		"@workspace/eslint-config": "workspace:*",
 		"@workspace/typescript-config": "workspace:*",
 		"husky": "^9.1.7",
@@ -34,10 +36,5 @@
 	"packageManager": "pnpm@10.18.0",
 	"engines": {
 		"node": ">=20"
-	},
-	"lint-staged": {
-		"**/*.{ts,tsx,js,jsx,json}": [
-			"biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
-		]
 	}
 }

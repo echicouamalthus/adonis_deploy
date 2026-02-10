@@ -1,6 +1,6 @@
-import { column, belongsTo } from '@adonisjs/lucid/orm'
+import { belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import { DateTime } from 'luxon'
+import type { DateTime } from 'luxon'
 import BaseModel from '#common/models/base_model'
 import User from '#users/models/user'
 

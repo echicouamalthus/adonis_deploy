@@ -1,5 +1,5 @@
-import Container from '#marketing/ui/components/container'
 import { Layers } from 'lucide-react'
+import Container from '#marketing/ui/components/container'
 
 export default function StackSection() {
   const stack = [

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-
-import type TokenDto from '#users/dtos/token'
 import useDialogState from '#common/ui/hooks/use_dialog_state'
+import type TokenDto from '#users/dtos/token'
 
 type TokensDialogType = 'add' | 'delete'
 

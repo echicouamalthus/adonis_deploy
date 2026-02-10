@@ -1,8 +1,6 @@
 import vine from '@vinejs/vine'
-
-import User from '#users/models/user'
-
 import { baseSearchValidator } from '#common/validators/search'
+import User from '#users/models/user'
 
 export const createUserValidator = vine.compile(
   vine.object({
@@ -74,7 +72,7 @@ export const editUserValidator = vine.withMetaData<{ userId: number }>().compile
           .where('email', value)
           .whereNot('id', field.meta.userId)
           .first()
-        return row ? false : true
+        return !row
       }),
     roleId: vine.number().exists({ table: 'roles', column: 'id' }),
     password: vine

@@ -1,11 +1,10 @@
 import { readFile } from 'node:fs/promises'
-import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
-
-import Scan from '#scans/models/scan'
-import VisionService from '#scans/services/vision_service'
+import app from '@adonisjs/core/services/app'
 import CreditService, { InsufficientCreditsError } from '#credits/services/credit_service'
+import Scan from '#scans/models/scan'
 import ImageService from '#scans/services/image_service'
+import VisionService from '#scans/services/vision_service'
 
 export default class ScanService {
   private creditService: CreditService

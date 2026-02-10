@@ -1,9 +1,7 @@
-import type { HttpContext } from '@adonisjs/core/http'
 import { cuid } from '@adonisjs/core/helpers'
-
-import User from '#users/models/user'
-
+import type { HttpContext } from '@adonisjs/core/http'
 import UserDto from '#users/dtos/user'
+import User from '#users/models/user'
 
 import UserPolicy from '#users/policies/user_policy'
 

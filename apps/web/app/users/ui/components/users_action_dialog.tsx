@@ -1,8 +1,5 @@
-import React from 'react'
 import { useForm } from '@inertiajs/react'
-
 import { Button } from '@workspace/ui/components/button'
-import { PasswordInput } from '@workspace/ui/components/password-input'
 import {
   Dialog,
   DialogClose,
@@ -12,26 +9,26 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@workspace/ui/components/dialog'
-import { ScrollArea } from '@workspace/ui/components/scroll-area'
-import { Input } from '@workspace/ui/components/input'
 import { Field, FieldLabel } from '@workspace/ui/components/field'
+import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
+import { Input } from '@workspace/ui/components/input'
+import { PasswordInput } from '@workspace/ui/components/password-input'
 import { Progress } from '@workspace/ui/components/progress'
-import { toast } from '@workspace/ui/hooks/use-toast'
+import { ScrollArea } from '@workspace/ui/components/scroll-area'
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@workspace/ui/components/select'
-import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
+import { toast } from '@workspace/ui/hooks/use-toast'
+import type React from 'react'
 import { useTranslation } from '#common/ui/hooks/use_translation'
-import { Role } from '#users/ui/components/users_types'
-
 import type UserDto from '#users/dtos/user'
-
 import Roles from '#users/enums/role'
+import type { Role } from '#users/ui/components/users_types'
 
 interface Props {
   roles: Role[]
@@ -46,7 +43,7 @@ export function UsersActionDialog({ roles, currentRow, open, onOpenChange }: Pro
   const isEdit = !!currentRow
 
   const { data, setData, errors, post, put, progress, clearErrors, reset } = useForm({
-    fullName: currentRow && currentRow.fullName ? currentRow.fullName : '',
+    fullName: currentRow?.fullName ? currentRow.fullName : '',
     email: currentRow ? currentRow.email : '',
     roleId: currentRow ? String(currentRow.roleId) : String(Roles.USER),
     password: '',

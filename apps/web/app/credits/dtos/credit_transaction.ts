@@ -1,5 +1,5 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
-import CreditTransaction from '#credits/models/credit_transactions'
+import type CreditTransaction from '#credits/models/credit_transactions'
 
 export default class CreditTransactionDto extends BaseModelDto {
   declare id: number

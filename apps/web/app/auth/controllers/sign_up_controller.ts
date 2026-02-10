@@ -1,9 +1,7 @@
-import { HttpContext } from '@adonisjs/core/http'
-import { afterAuthRedirectRoute } from '#config/auth'
-
-import User from '#users/models/user'
-
+import type { HttpContext } from '@adonisjs/core/http'
 import { signUpValidator } from '#auth/validators'
+import { afterAuthRedirectRoute } from '#config/auth'
+import User from '#users/models/user'
 
 export default class SignUpController {
   async show({ inertia }: HttpContext) {

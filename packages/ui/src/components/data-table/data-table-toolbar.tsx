@@ -1,12 +1,11 @@
-import { Table } from "@tanstack/react-table";
-import { X } from "lucide-react";
-
-import { Button } from "@workspace/ui/components/button";
+import type { Table } from '@tanstack/react-table'
+import { Button } from '@workspace/ui/components/button'
+import { X } from 'lucide-react'
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
-  additionalFilters?: React.ReactNode;
-  t: (key: string, options?: Record<string, unknown>) => string;
+  table: Table<TData>
+  additionalFilters?: React.ReactNode
+  t: (key: string, options?: Record<string, unknown>) => string
 }
 
 export function DataTableToolbar<TData>({
@@ -14,7 +13,7 @@ export function DataTableToolbar<TData>({
   additionalFilters,
   t,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+  const isFiltered = table.getState().columnFilters.length > 0
 
   return (
     <div className="flex items-center justify-between">
@@ -26,11 +25,11 @@ export function DataTableToolbar<TData>({
             onClick={() => table.resetColumnFilters()}
             className="h-8 px-2 lg:px-3"
           >
-            {t("common.table.row_actions.clear")}
+            {t('common.table.row_actions.clear')}
             <X />
           </Button>
         )}
       </div>
     </div>
-  );
+  )
 }

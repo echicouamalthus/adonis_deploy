@@ -1,12 +1,11 @@
-import { defineConfig } from '@adonisjs/inertia'
-import type { InferSharedProps } from '@adonisjs/inertia/types'
 import logger from '@adonisjs/core/services/logger'
 import i18nManager from '@adonisjs/i18n/services/main'
+import { defineConfig } from '@adonisjs/inertia'
+import type { InferSharedProps } from '@adonisjs/inertia/types'
 import { isSSREnableForPage } from '#config/ssr'
-
-import AbilitiesService from '#users/services/abilities_service'
-import User from '#users/models/user'
 import UserDto from '#users/dtos/user'
+import User from '#users/models/user'
+import AbilitiesService from '#users/services/abilities_service'
 
 const inertiaConfig = defineConfig({
   /**

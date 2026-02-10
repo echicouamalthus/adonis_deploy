@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto'
-import Share from '#shares/models/share'
-import Scan from '#scans/models/scan'
 import CreditService from '#credits/services/credit_service'
+import Scan from '#scans/models/scan'
+import Share from '#shares/models/share'
 
 export default class ShareService {
   private creditService: CreditService

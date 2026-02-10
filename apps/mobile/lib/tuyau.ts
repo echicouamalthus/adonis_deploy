@@ -1,6 +1,6 @@
-import { createTuyau } from "@tuyau/client";
-import { api } from "../../web/.adonisjs/api";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from '@tanstack/react-query'
+import { createTuyau } from '@tuyau/client'
+import { api } from '../../web/.adonisjs/api'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,13 +12,13 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-});
+})
 
 export const tuyau = createTuyau({
   api,
-  baseUrl: process.env.EXPO_PUBLIC_API_URL || "http://localhost:3333",
+  baseUrl: process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3333',
   headers: {
-    Accept: "application/json",
-    "Content-type": "application/json",
+    Accept: 'application/json',
+    'Content-type': 'application/json',
   },
-});
+})

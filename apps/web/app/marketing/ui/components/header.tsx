@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import { Link } from '@tuyau/inertia/react'
 import { MenuIcon } from 'lucide-react'
-
-import Container from '#marketing/ui/components/container'
+import { useState } from 'react'
 import { AppLogo } from '#common/ui/components/app_logo'
+import Container from '#marketing/ui/components/container'
 
 export default function HeaderSection() {
   const [menuOpen, setMenuOpen] = useState(false)

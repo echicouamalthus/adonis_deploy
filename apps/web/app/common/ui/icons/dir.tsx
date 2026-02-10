@@ -1,6 +1,6 @@
-import type { SVGProps } from 'react'
-import { Direction } from '#common/ui/context/direction_provider'
 import { cn } from '@workspace/ui/lib/utils'
+import type { SVGProps } from 'react'
+import type { Direction } from '#common/ui/context/direction_provider'
 
 type IconDirProps = SVGProps<SVGSVGElement> & {
   dir: Direction

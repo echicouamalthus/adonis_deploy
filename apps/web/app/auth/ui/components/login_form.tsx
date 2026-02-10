@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Link, useTuyau } from '@tuyau/inertia/react'
-
-import { cn } from '@workspace/ui/lib/utils'
 import { Button } from '@workspace/ui/components/button'
-import { Input } from '@workspace/ui/components/input'
 import {
-  FieldSet,
-  FieldGroup,
   Field,
+  FieldError,
+  FieldGroup,
   FieldLabel,
   FieldSeparator,
-  FieldError,
+  FieldSet,
 } from '@workspace/ui/components/field'
 import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
-
+import { Input } from '@workspace/ui/components/input'
+import { PasswordInput } from '@workspace/ui/components/password-input'
+import { cn } from '@workspace/ui/lib/utils'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 import useFlashMessage from '#common/ui/hooks/use_flash_message'
 import { useTranslation } from '#common/ui/hooks/use_translation'
-import { PasswordInput } from '@workspace/ui/components/password-input'
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
   const { data, setData, errors, post } = useForm({

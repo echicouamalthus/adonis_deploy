@@ -1,8 +1,8 @@
-import { generateText, Output } from 'ai'
+import logger from '@adonisjs/core/services/logger'
 import { createGoogleGenerativeAI } from '@ai-sdk/google'
+import { generateText, Output } from 'ai'
 import { z } from 'zod'
 import env from '#start/env'
-import logger from '@adonisjs/core/services/logger'
 
 export const visionReponseSchema = z.object({
   label: z.string().describe("Nom de l'objet en anglais (1 mots)"),

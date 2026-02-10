@@ -2,11 +2,9 @@ import { Can } from '@casl/react'
 
 import { Button } from '@workspace/ui/components/button'
 import { TicketPlus } from 'lucide-react'
-
-import { useTokens } from '#users/ui/context/tokens_context'
-import { useAbility } from '#users/ui/context/abilities_context'
-
 import { useTranslation } from '#common/ui/hooks/use_translation'
+import { useAbility } from '#users/ui/context/abilities_context'
+import { useTokens } from '#users/ui/context/tokens_context'
 
 export function TokensPrimaryButtons() {
   const { setOpen } = useTokens()

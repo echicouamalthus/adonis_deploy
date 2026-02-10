@@ -1,6 +1,5 @@
-import React from 'react'
-
 import { cn } from '@workspace/ui/lib/utils'
+import type React from 'react'
 
 interface MainProps extends React.HTMLAttributes<HTMLElement> {
   fixed?: boolean

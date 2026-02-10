@@ -1,13 +1,11 @@
-import React from 'react'
 import { useForm } from '@inertiajs/react'
-
 import { Button } from '@workspace/ui/components/button'
-import { Progress } from '@workspace/ui/components/progress'
-import { PasswordInput } from '@workspace/ui/components/password-input'
-import { FieldSet, FieldGroup, Field, FieldLabel } from '@workspace/ui/components/field'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@workspace/ui/components/field'
 import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
-
+import { PasswordInput } from '@workspace/ui/components/password-input'
+import { Progress } from '@workspace/ui/components/progress'
 import { toast } from '@workspace/ui/hooks/use-toast'
+import type React from 'react'
 import { useTranslation } from '#common/ui/hooks/use_translation'
 
 export function PasswordForm() {

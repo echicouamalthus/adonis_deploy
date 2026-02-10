@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
 import { router } from '@inertiajs/react'
-
 import { Button } from '@workspace/ui/components/button'
+import { CopyButton } from '@workspace/ui/components/copy-button'
 import {
   Dialog,
   DialogClose,
@@ -11,10 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@workspace/ui/components/dialog'
-import { Input } from '@workspace/ui/components/input'
 import { Field, FieldLabel } from '@workspace/ui/components/field'
-import { CopyButton } from '@workspace/ui/components/copy-button'
+import { Input } from '@workspace/ui/components/input'
 import { toast } from '@workspace/ui/hooks/use-toast'
+import type React from 'react'
+import { useState } from 'react'
 
 import { useTranslation } from '#common/ui/hooks/use_translation'
 

@@ -84,13 +84,13 @@ async function main() {
       log('  ✅ TypeScript OK', 'green');
     }
 
-    // ESLint check
-    log('  → ESLint check...', 'blue');
-    if (!exec('pnpm --filter web run lint')) {
-      log('  ❌ ESLint errors in apps/web', 'red');
+    // Biome check (lint + format)
+    log('  → Biome check...', 'blue');
+    if (!exec('pnpm biome check apps/web')) {
+      log('  ❌ Biome errors in apps/web', 'red');
       hasErrors = true;
     } else {
-      log('  ✅ ESLint OK', 'green');
+      log('  ✅ Biome OK', 'green');
     }
   }
 
@@ -98,13 +98,13 @@ async function main() {
   if (changedApps.mobile) {
     log('\n📱 Checking apps/mobile (Expo)...', 'yellow');
 
-    // ESLint check
-    log('  → ESLint check...', 'blue');
-    if (!exec('pnpm --filter mobile run lint')) {
-      log('  ❌ ESLint errors in apps/mobile', 'red');
+    // Biome check
+    log('  → Biome check...', 'blue');
+    if (!exec('pnpm biome check apps/mobile')) {
+      log('  ❌ Biome errors in apps/mobile', 'red');
       hasErrors = true;
     } else {
-      log('  ✅ ESLint OK', 'green');
+      log('  ✅ Biome OK', 'green');
     }
   }
 

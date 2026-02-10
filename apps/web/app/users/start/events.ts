@@ -4,6 +4,6 @@ import mail from '@adonisjs/mail/services/main'
 
 import WelcomeNotification from '#users/mails/welcome_notification'
 
-emitter.on('user:registered', async function (data) {
+emitter.on('user:registered', async (data) => {
   await mail.send(new WelcomeNotification(data.user, data.translations, data.message))
 })

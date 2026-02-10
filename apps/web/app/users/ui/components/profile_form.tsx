@@ -1,15 +1,14 @@
-import React, { useRef, useState } from 'react'
 import { useForm } from '@inertiajs/react'
-
-import { UserAvatar } from '#common/ui/components/user_avatar'
-import { useTranslation } from '#common/ui/hooks/use_translation'
-
 import { Button } from '@workspace/ui/components/button'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@workspace/ui/components/field'
+import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
 import { Input } from '@workspace/ui/components/input'
 import { Progress } from '@workspace/ui/components/progress'
-import { FieldSet, FieldGroup, Field, FieldLabel } from '@workspace/ui/components/field'
-import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
 import { toast } from '@workspace/ui/hooks/use-toast'
+import type React from 'react'
+import { useRef, useState } from 'react'
+import { UserAvatar } from '#common/ui/components/user_avatar'
+import { useTranslation } from '#common/ui/hooks/use_translation'
 
 import type UserDto from '#users/dtos/user'
 

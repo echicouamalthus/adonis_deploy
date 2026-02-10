@@ -1,9 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { attachmentManager } from '@jrmc/adonis-attachment'
-
-import User from '#users/models/user'
-
 import UserDto from '#users/dtos/user'
+import User from '#users/models/user'
 
 import { updateProfileValidator } from '#users/validators'
 

@@ -1,6 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import CreditService from '#credits/services/credit_service'
 import CreditTransactionDto from '#credits/dtos/credit_transaction'
+import CreditService from '#credits/services/credit_service'
 
 export default class CreditsController {
   private creditService: CreditService

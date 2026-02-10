@@ -1,12 +1,12 @@
-import { type SVGProps } from 'react'
 import { Item, Root as Radio } from '@radix-ui/react-radio-group'
+import { Button } from '@workspace/ui/components/button'
+import { useSidebar } from '@workspace/ui/components/sidebar'
+import { useTheme } from '@workspace/ui/components/theme-provider'
+import { cn } from '@workspace/ui/lib/utils'
 import { CircleCheck, RotateCcw } from 'lucide-react'
+import type { SVGProps } from 'react'
 import { useDirection } from '#common/ui/context/direction_provider'
 import { useLayout } from '#common/ui/context/layout_provider'
-import { useTheme } from '@workspace/ui/components/theme-provider'
-import { Button } from '@workspace/ui/components/button'
-import { cn } from '@workspace/ui/lib/utils'
-import { useSidebar } from '@workspace/ui/components/sidebar'
 import {
   IconDir,
   IconLayoutCompact,

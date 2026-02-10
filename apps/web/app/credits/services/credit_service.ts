@@ -1,7 +1,7 @@
 import db from '@adonisjs/lucid/services/db'
-import User from '#users/models/user'
-import CreditTransaction from '#credits/models/credit_transactions'
 import type { CreditType } from '#credits/models/credit_transactions'
+import CreditTransaction from '#credits/models/credit_transactions'
+import User from '#users/models/user'
 
 /**
  * Erreur métier : crédits insuffisants.

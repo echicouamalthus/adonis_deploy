@@ -1,10 +1,10 @@
-import React from 'react'
 import {
   AbilityBuilder,
   createMongoAbility,
   type MongoAbility,
   type MongoQuery,
 } from '@casl/ability'
+import React from 'react'
 
 import usePageProps from '#common/ui/hooks/use_page_props'
 import type { Rule, Subjects } from '#users/services/abilities_service'

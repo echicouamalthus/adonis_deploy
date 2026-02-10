@@ -1,6 +1,6 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
 
-import User from '#users/models/user'
+import type User from '#users/models/user'
 
 export default class UserDto extends BaseModelDto {
   declare id: number

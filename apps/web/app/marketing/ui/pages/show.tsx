@@ -1,10 +1,10 @@
-import HeroSection from '#marketing/ui/components/hero'
-import StackSection from '#marketing/ui/components/stack'
-import FeatureShowcase from '#marketing/ui/components/feature_showcase'
 import FeatureSection from '#marketing/ui/components/feature'
+import FeatureShowcase from '#marketing/ui/components/feature_showcase'
 import FooterSection from '#marketing/ui/components/footer'
 import HeaderSection from '#marketing/ui/components/header'
+import HeroSection from '#marketing/ui/components/hero'
 import LogosSection from '#marketing/ui/components/logos'
+import StackSection from '#marketing/ui/components/stack'
 
 export default function Page() {
   return (

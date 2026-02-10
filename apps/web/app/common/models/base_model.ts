@@ -1,5 +1,5 @@
 import { BaseModel as AdonisBaseModel, column } from '@adonisjs/lucid/orm'
-import { DateTime } from 'luxon'
+import type { DateTime } from 'luxon'
 
 export default class BaseModel extends AdonisBaseModel {
   /**

@@ -1,6 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { generateText, Output } from 'ai'
 import { createGoogleGenerativeAI } from '@ai-sdk/google'
+import { generateText, Output } from 'ai'
 import { z } from 'zod'
 import env from '#start/env'
 

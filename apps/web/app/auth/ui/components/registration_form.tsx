@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Link } from '@tuyau/inertia/react'
-
-import { cn } from '@workspace/ui/lib/utils'
 import { Button } from '@workspace/ui/components/button'
-import { Input } from '@workspace/ui/components/input'
-import { FieldSet, FieldGroup, Field, FieldLabel, FieldError } from '@workspace/ui/components/field'
+import { Field, FieldError, FieldGroup, FieldLabel, FieldSet } from '@workspace/ui/components/field'
 import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
-
-import { useTranslation } from '#common/ui/hooks/use_translation'
-import useFlashMessage from '#common/ui/hooks/use_flash_message'
+import { Input } from '@workspace/ui/components/input'
 import { PasswordInput } from '@workspace/ui/components/password-input'
+import { cn } from '@workspace/ui/lib/utils'
+import type React from 'react'
+import { useEffect, useState } from 'react'
+import useFlashMessage from '#common/ui/hooks/use_flash_message'
+import { useTranslation } from '#common/ui/hooks/use_translation'
 
 export function RegistrationForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
   const { data, setData, errors, post } = useForm({

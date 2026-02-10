@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@workspace/ui/components/breadcrumb'
+import React from 'react'
 
 interface BreadcrumbsProps {
   breadcrumbs: { label: string; href?: string }[]

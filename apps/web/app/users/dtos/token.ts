@@ -1,5 +1,5 @@
 import { BaseModelDto } from '@adocasts.com/dto/base'
-import { AccessToken } from '@adonisjs/auth/access_tokens'
+import type { AccessToken } from '@adonisjs/auth/access_tokens'
 
 export default class TokenDto extends BaseModelDto {
   declare id: string

@@ -1,10 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import env from '#start/env'
-import ShareService from '#shares/services/share_service'
-import ShareDto from '#shares/dtos/share'
 import CreditService from '#credits/services/credit_service'
-import { createShareValidator } from '#shares/validators'
 import ScanDto from '#scans/dtos/scan'
+import ShareDto from '#shares/dtos/share'
+import ShareService from '#shares/services/share_service'
+import { createShareValidator } from '#shares/validators'
+import env from '#start/env'
 
 export default class SharesController {
   private shareService: ShareService

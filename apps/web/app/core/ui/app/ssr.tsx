@@ -1,10 +1,10 @@
-import ReactDOMServer from 'react-dom/server'
 import { createInertiaApp } from '@inertiajs/react'
 import { TuyauProvider } from '@tuyau/inertia/react'
-import { tuyau } from './tuyau'
+import ReactDOMServer from 'react-dom/server'
+import { I18nextProvider } from 'react-i18next'
 
 import { setupI18n } from '../config/i18n.config'
-import { I18nextProvider } from 'react-i18next'
+import { tuyau } from './tuyau'
 
 export default function render(page: any) {
   return createInertiaApp({

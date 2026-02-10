@@ -1,6 +1,6 @@
 import Container from '#marketing/ui/components/container'
-import ufrrjLogo from '../images/ufrrj.png'
 import atislabsLogo from '../images/atislabs.png'
+import ufrrjLogo from '../images/ufrrj.png'
 
 export default function LogosSection() {
   return (

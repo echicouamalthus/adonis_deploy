@@ -1,6 +1,6 @@
-import env from '#start/env'
 import app from '@adonisjs/core/services/app'
 import { defineConfig, services } from '@adonisjs/drive'
+import env from '#start/env'
 
 const driveConfig = defineConfig({
   default: env.get('DRIVE_DISK'),

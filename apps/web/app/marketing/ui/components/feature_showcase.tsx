@@ -1,8 +1,7 @@
-import Container from '#marketing/ui/components/container'
 import { Link } from '@tuyau/inertia/react'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
-
 import { Button } from '@workspace/ui/components/button'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import Container from '#marketing/ui/components/container'
 
 import featureForgot from '../images/feature_forgot.png'
 import featureUsers from '../images/feature_users.png'

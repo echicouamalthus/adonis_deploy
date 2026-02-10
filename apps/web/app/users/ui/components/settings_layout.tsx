@@ -1,12 +1,10 @@
-import { ReactNode } from 'react'
-
+import { Separator } from '@workspace/ui/components/separator'
+import { KeyRound, Palette, Ticket, User } from 'lucide-react'
+import type { ReactNode } from 'react'
 import Heading from '#common/ui/components/heading'
 import { Main } from '#common/ui/components/main'
 import SidebarNav, { type SidebarNavItem } from '#common/ui/components/sidebar_nav'
 import { useTranslation } from '#common/ui/hooks/use_translation'
-
-import { Separator } from '@workspace/ui/components/separator'
-import { KeyRound, Palette, Ticket, User } from 'lucide-react'
 
 export default function SettingsLayout({
   children,

@@ -1,13 +1,13 @@
 import { Link } from '@inertiajs/react'
-import { Menu } from 'lucide-react'
 import { Button } from '@workspace/ui/components/button'
 import {
   Sheet,
-  SheetTrigger,
   SheetContent,
-  SheetTitle,
   SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from '@workspace/ui/components/sheet'
+import { Menu } from 'lucide-react'
 
 import { AppLogo } from '#common/ui/components/app_logo'
 import { isSection, type NavMainItem } from '#common/ui/types/navigation'

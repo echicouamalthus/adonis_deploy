@@ -107,15 +107,13 @@ async function main() {
   if (changedApps.mobile) {
     log('\n📱 Checking apps/mobile (Expo)...', 'yellow');
 
-    // Export web pour vérifier les erreurs de build
-    log('  → Checking TypeScript...', 'blue');
-    // Note: Expo n'a pas de commande typecheck par défaut
-    // On vérifie juste le lint
-    if (!exec('pnpm --filter mobile run lint')) {
-      log('  ❌ Lint failed for apps/mobile', 'red');
+    // Biome check
+    log('  → Biome check...', 'blue');
+    if (!exec('pnpm biome check apps/mobile')) {
+      log('  ❌ Biome check failed for apps/mobile', 'red');
       hasErrors = true;
     } else {
-      log('  ✅ Lint OK', 'green');
+      log('  ✅ Biome OK', 'green');
     }
   }
 

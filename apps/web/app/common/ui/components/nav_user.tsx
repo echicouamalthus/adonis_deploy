@@ -1,9 +1,4 @@
-import React from 'react'
 import { Link } from '@inertiajs/react'
-
-import { UserAvatar } from '#common/ui/components/user_avatar'
-import type { NavUserProps } from '#common/ui/types/navigation'
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +8,9 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@workspace/ui/components/dropdown-menu'
+import React from 'react'
+import { UserAvatar } from '#common/ui/components/user_avatar'
+import type { NavUserProps } from '#common/ui/types/navigation'
 
 export function NavUser({ user, options }: NavUserProps) {
   return (

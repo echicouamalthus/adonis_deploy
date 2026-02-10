@@ -1,14 +1,13 @@
-import * as React from 'react'
 import { router } from '@inertiajs/react'
+import { Button } from '@workspace/ui/components/button'
+import { CheckboxFilter } from '@workspace/ui/components/checkbox-filter'
+import { Input } from '@workspace/ui/components/input'
+import { X } from 'lucide-react'
+import * as React from 'react'
 import { useDebounceCallback } from 'usehooks-ts'
 
-import { X } from 'lucide-react'
-import { Button } from '@workspace/ui/components/button'
-import { Input } from '@workspace/ui/components/input'
-import { CheckboxFilter } from '@workspace/ui/components/checkbox-filter'
-
 import { useTranslation } from '#common/ui/hooks/use_translation'
-import { Role } from '#users/ui/components/users_types'
+import type { Role } from '#users/ui/components/users_types'
 
 export default function UsersTableFilters({
   querySearch,

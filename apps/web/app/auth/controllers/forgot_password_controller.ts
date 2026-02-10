@@ -1,12 +1,10 @@
-import { HttpContext } from '@adonisjs/core/http'
-import emitter from '@adonisjs/core/services/emitter'
 import { inject } from '@adonisjs/core/container'
-
+import type { HttpContext } from '@adonisjs/core/http'
+import emitter from '@adonisjs/core/services/emitter'
+import { forgotPasswordValidator } from '#auth/validators'
 import User from '#users/models/user'
 
-import { forgotPasswordValidator } from '#auth/validators'
-
-import PasswordResetService from '#users/services/password_reset_service'
+import type PasswordResetService from '#users/services/password_reset_service'
 
 @inject()
 export default class ForgotPasswordController {
