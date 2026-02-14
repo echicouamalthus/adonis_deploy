@@ -8,6 +8,7 @@
 |
 */
 
+import app from '@adonisjs/core/services/app'
 import router from '@adonisjs/core/services/router'
 import server from '@adonisjs/core/services/server'
 
@@ -22,13 +23,19 @@ server.errorHandler(() => import('#core/exceptions/handler'))
  * requests, even if there is no route registered for
  * the request URL.
  */
-server.use([
+const serverMiddleware: any[] = [
   () => import('#core/middleware/container_bindings_middleware'),
   () => import('@adonisjs/static/static_middleware'),
   () => import('@adonisjs/cors/cors_middleware'),
-  () => import('@adonisjs/vite/vite_middleware'),
-  () => import('@adonisjs/inertia/inertia_middleware'),
-])
+]
+
+// Exclure Vite et Inertia en environnement test
+if (!app.inTest) {
+  serverMiddleware.push(() => import('@adonisjs/vite/vite_middleware'))
+  serverMiddleware.push(() => import('@adonisjs/inertia/inertia_middleware'))
+}
+
+server.use(serverMiddleware)
 
 /**
  * The router middleware stack runs middleware on all the HTTP

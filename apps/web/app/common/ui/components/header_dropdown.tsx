@@ -53,6 +53,7 @@ export default function HeaderDropdown({
   }, [])
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: dropdown requires mouse event handlers
     <div
       className="relative"
       onMouseEnter={handleMouseEnter}
